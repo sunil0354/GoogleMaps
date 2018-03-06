@@ -2,12 +2,14 @@ package com.app.directiongooglemaps;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -61,9 +63,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onMapClick(LatLng latLng) {
 //                createRouteByClickingTwoPoints(latLng);
 //                addStaticLocation(googleMap);
-                setDestinationByClickingPosition(latLng);
+//                setDestinationByClickingPosition(latLng);
+                navigateTheUser(latLng);
             }
         });
+    }
+
+    private void navigateTheUser(LatLng latLng) {
+        double lat = latLng.latitude;
+        double lng = latLng.longitude;
+        String format = "geo:0,0?q=" + lat + "," + lng + "( Location title)";
+        Uri uri = Uri.parse(format);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @Override
