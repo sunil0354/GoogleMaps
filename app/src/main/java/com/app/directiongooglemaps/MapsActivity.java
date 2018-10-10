@@ -14,6 +14,15 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.AutocompleteFilter;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -53,6 +62,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         getCurrentLocationInformation();
+        /*
+         * The following code example shows setting an AutocompleteFilter on a PlaceAutocompleteFragment to
+         * set a filter returning only results with a precise address.
+         */
+//        AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
+//                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
+//                .build();
+//        autocompleteFragment.setFilter(typeFilter);
+//
+//        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//                // TODO: Get info about the selected place.
+//                Log.e("TAG", "Place: " + place.getName());//get place details here
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//                // TODO: Handle the error.
+//                Log.i("TAG", "An error occurred: " + status);
+//            }
+//        });
     }
 
     @Override
@@ -61,10 +92,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         this.googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-//                createRouteByClickingTwoPoints(latLng);
+                createRouteByClickingTwoPoints(latLng);
 //                addStaticLocation(googleMap);
 //                setDestinationByClickingPosition(latLng);
-                navigateTheUser(latLng);
+//                navigateTheUser(latLng);
             }
         });
     }
